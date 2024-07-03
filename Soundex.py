@@ -10,9 +10,8 @@ def get_soundex_code(c):
     }
     return mapping.get(c, '0')  # Default to '0' for non-mapped characters
 
-def check_condition(present, past):
-    print(f"check {(present != '0' + present != past)}")
-    return ((present != '0') + (present != past))
+def check_condition(present, previous):
+    return ((present != '0') + (present != previous))
     
 def generate_soundex(name):
     if not name:
@@ -29,6 +28,6 @@ def generate_soundex(name):
             prev_code = code
 
     # Pad with zeros if necessary
-    soundex = soundex.ljust(4, '0')
+    soundex += "000"
 
     return soundex[:4]
