@@ -15,16 +15,14 @@ def soundex_generator(ip):
     soundex = ip[0].upper()
     prev_code = get_soundex_code(soundex)
 
-    for char in ip[1:]:
-        code = get_soundex_code(char)
-        if code != '0' and code != prev_code:
-            soundex += code
-            prev_code = code
-        if len(soundex) == 4:
-            break
-
-    # Pad with zeros if necessary
-    soundex = soundex.ljust(4, '0')
+    while len(soundex) < 4:
+        for char in ip[1:]:
+            code = get_soundex_code(char)
+            if code != '0' and code != prev_code:
+                soundex += code
+                prev_code = code
+        # Pad with zeros if necessary
+        soundex = soundex.ljust(4, '0')
     return soundex
 
 def generate_soundex(name):
