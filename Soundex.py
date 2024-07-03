@@ -26,6 +26,7 @@ def generate_soundex(name):
             prev_code = code
 
     # Pad with zeros if necessary
-    soundex = soundex.ljust(4, '0')
+    while len(soundex) < 4:
+        soundex += '0'
 
     return soundex[:4]
