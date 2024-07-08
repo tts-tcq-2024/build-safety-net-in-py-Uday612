@@ -12,22 +12,23 @@ def get_soundex_code(c):
 
 def check_condition(present, previous):
     return ((present != '0') + (present != previous))
+
+def soundex_generator(ip_string):
     
-def generate_soundex(name):
-    if not name:
-        return ""
-
-    # Start with the first letter (capitalized)
-    soundex = name[0].upper()
+    soundex = ip_string[0].upper()
     prev_code = get_soundex_code(soundex)
-
-    for char in name[1:]:
+    for char in ip_string[1:]:
         code = get_soundex_code(char)
-        if (check_condition(code, prev_code) >1):
+        if (check_condition(code, prev_code) > 1):
             soundex += code
             prev_code = code
+    return soundex
 
-    # Pad with zeros if necessary
-    soundex += "000"
-
-    return soundex[:4]
+def generate_soundex(name):
+    if not name :
+        return ""
+        
+    res = soundex_generator(name)
+    # Pad with zeros
+    res += "0000"
+    return res[:4]
