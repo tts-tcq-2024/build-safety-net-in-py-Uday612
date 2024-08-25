@@ -14,6 +14,9 @@ class TestSoundex(unittest.TestCase):
         
     def test_string_with_vowels(self):
         self.assertEqual(generate_soundex("Robert"),"R163")
+
+    def test_string_with_numbers(self):
+        self.assertEqual(generate_soundex("1234"),"1000")
   
 if __name__ == '__main__':
     unittest.main()
